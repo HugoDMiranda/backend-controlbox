@@ -11,14 +11,6 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
-// app.use(
-//   cors({
-//     origin: ["http://localhost:3000"],
-//     methods: ["GET", "POST", "DELETE", "PUT"],
-//     credentials: true,
-//   })
-// );
-
 const origin = ["https://animereviews.vercel.app", "http://localhost:3000"];
 
 app.use(
