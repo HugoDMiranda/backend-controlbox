@@ -1,21 +1,21 @@
 import { db } from "../db.js";
 
 export const getReviews = (req, res) => {
-  const q = req.query.Categoria
+  const q = req.query.categoria
     ? "SELECT * FROM books_reviews WHERE booksCategoria = ?;"
-    : req.query.type
+    : req.query.titulo
     ? "SELECT * FROM books_reviews WHERE booksTitulo = ?;"
-    : req.query.status
+    : req.query.autor
     ? "SELECT * FROM books_reviews WHERE booksAutor = ?;"
     : "SELECT * FROM books_reviews;";
 
   const query =
     q === "SELECT * FROM books_reviews WHERE booksCategoria = ?;"
-      ? req.query.Categoria
+      ? req.query.categoria
       : q === "SELECT * FROM books_reviews WHERE booksTitulo = ?;"
-      ? req.query.type
+      ? req.query.titulo
       : q === "SELECT * FROM books_reviews WHERE booksAutor = ?;"
-      ? req.query.status
+      ? req.query.autor
       : null;
 
   db.query(q, [query], (err, data) => {
