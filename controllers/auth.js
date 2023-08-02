@@ -93,9 +93,9 @@ export const password = (req, res) => {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(req.body.newPassword, salt);
 
-    const sqlUpdate = "UPDATE users SET password = ?";
+    const sqlUpdate = "UPDATE users SET password = ? WHERE name = ?";
 
-    db.query(sqlUpdate, [hash], (err, data) => {
+    db.query(sqlUpdate, [hash, req.body.username], (err, data) => {
       if (err) return res.send(err);
 
       return res.status(200).json("Contraseña cambiada exitosamente");
